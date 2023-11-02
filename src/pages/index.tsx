@@ -5,7 +5,7 @@ const IndexPage = () => {
 
   useEffect(() => {
     // Fetching data from the API endpoint
-    fetch("http://localhost:3000/api/hello")
+    fetch("/api/hello")
       .then((response) => response.json())
       .then((data) => setData(data.name));
     console.log(data);
