@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "next": "14.0.1",
+    "next": "^14.0.1",
     "react": "^18",
     "react-dom": "^18"
   },
