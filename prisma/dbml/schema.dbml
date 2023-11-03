@@ -1,0 +1,14 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table battles {
+  id Int [pk, increment]
+  battleTime String [not null]
+  playerTag String [not null]
+  opponentTag String [not null]
+  playerCrowns Int [not null]
+  opponentCrowns Int [not null]
+  clanId String [not null]
+  win Boolean [not null]
+}
