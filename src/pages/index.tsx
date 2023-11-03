@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const IndexPage = () => {
-  const [data, setData] = useState(null);
-
+  const [battles, setBattles] = useState();
   useEffect(() => {
     // Fetching data from the API endpoint
-    fetch("/api/hello")
-      .then((response) => response.json())
-      .then((data) => setData(data.name));
-    console.log(data);
-  }, [data]); // The empty dependency array means this useEffect runs once when component mounts
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/battles");
+        setBattles(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []); // The empty dependency array means this useEffect runs once when component mounts
 
   return (
     <div>
       <h1>Index Page</h1>
-      {data && (
-        <div>
-          <h2>Data from API:</h2>
-          <p>Name: {JSON.stringify(data)}</p>
-        </div>
-      )}
+      <p>{JSON.stringify(battles)}</p>
     </div>
   );
 };
