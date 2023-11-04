@@ -15,11 +15,15 @@ datasource db {
 
 model battles {
   id            Int       @id @default(autoincrement())
-  battleTime    String  
+  battleTime    String
+  playerName    String  
   playerTag     String
-  opponentTag   String
+  playerDeck    String[]
   playerCrowns  Int
+  opponentName  String
+  opponentTag   String
+  opponentDeck  String[]
   opponentCrowns Int
-  clanId        String
-  win           Boolean
+  clanName      String
+  win           Int
 }
