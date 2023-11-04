@@ -12,7 +12,8 @@ export default async function handler(
 
     console.log("After querying the database"); // Log after the query
     console.log("Battles retrieved from the database:", battles);
-
+    // Test comment
+    // Another test comment
     res.status(200).json(battles);
   } catch (error) {
     console.error("An error occurred:", error); // Log any errors that occur
