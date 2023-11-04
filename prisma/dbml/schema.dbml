@@ -5,10 +5,14 @@
 Table battles {
   id Int [pk, increment]
   battleTime String [not null]
+  playerName String [not null]
   playerTag String [not null]
-  opponentTag String [not null]
+  playerDeck String[] [not null]
   playerCrowns Int [not null]
+  opponentName String [not null]
+  opponentTag String [not null]
+  opponentDeck String[] [not null]
   opponentCrowns Int [not null]
-  clanId String [not null]
-  win Boolean [not null]
+  clanName String [not null]
+  win Int [not null]
 }
