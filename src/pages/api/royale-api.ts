@@ -8,23 +8,23 @@ import {
 } from "@/lib/types/types";
 import cleanPlayerDeck from "@/lib/helpers/funcs/clean-decks/clean-player-deck";
 
-const URL = "https://proxy.royaleapi.dev/v1/players/%23LGP89JU/battlelog";
-const headers = {
-  Accept: "application/json",
-  Authorization: `Bearer ${process.env.ROYALE_API_KEY}`,
-};
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<RoyaleApiResonse | RoyaleApiErrorResponse>
 ) {
+  const playerTag = req.query.playerTag;
+  const URL = `https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`;
+  const headers = {
+    Accept: "application/json",
+    Authorization: `Bearer ${process.env.ROYALE_API_KEY}`,
+  };
   try {
     const response = await axios.get<Battles>(URL, { headers });
     const friendlyBattles = response.data.filter(
-      (item) => item.type === "clanMate"
+      (item) => item.type === "clanMate" || item.type === "friendly"
     );
 
-    if (!friendlyBattles)
+    if (friendlyBattles.length === 0)
       res.status(404).json({
         foundBattles: false,
         data: "Oops. Looks like you havent had any friendly battles recently. Why dont you have some and come back!",
