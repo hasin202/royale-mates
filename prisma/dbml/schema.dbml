@@ -4,7 +4,7 @@
 
 Table battles {
   id Int [pk, increment]
-  battleTime String [not null]
+  battleTime String [unique, not null]
   playerName String [not null]
   playerTag String [not null]
   playerDeck String[] [not null]

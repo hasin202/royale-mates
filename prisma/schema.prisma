@@ -15,7 +15,7 @@ datasource db {
 
 model battles {
   id            Int       @id @default(autoincrement())
-  battleTime    String
+  battleTime    String    @unique
   playerName    String  
   playerTag     String
   playerDeck    String[]
