@@ -18,7 +18,7 @@ export default async function handler(
     console.log("success get db values");
     if (battles.length === 0) {
       console.log("battles length = 0");
-      insertDbRows(friendlyBattles);
+      await insertDbRows(friendlyBattles);
       return res
         .status(200)
         .json({ message: `inserted ${friendlyBattles.length} rows` });
