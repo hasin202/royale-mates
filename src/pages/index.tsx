@@ -4,16 +4,22 @@ import axios from "axios";
 const IndexPage = () => {
   const [battles, setBattles] = useState();
   useEffect(() => {
+    let alreadyRan = false;
     // Fetching data from the API endpoint
     const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/update-db?playerTag=LGP89JU");
-        setBattles(response.data);
-      } catch (error) {
-        console.log(error);
+      if (!alreadyRan) {
+        try {
+          const response = await axios.get("/api/update-db?playerTag=LGP89JU");
+          setBattles(response.data);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
     fetchData();
+    return () => {
+      alreadyRan = true;
+    };
   }, []); // The empty dependency array means this useEffect runs once when component mounts
 
   return (
