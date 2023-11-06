@@ -7,7 +7,7 @@ const IndexPage = () => {
     // Fetching data from the API endpoint
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/royale-api?playerTag=CRL0QQQ9C");
+        const response = await axios.get("/api/update-db?playerTag=LGP89JU");
         setBattles(response.data);
       } catch (error) {
         console.log(error);

@@ -8,27 +8,24 @@ import {
 } from "@/lib/types/types";
 import cleanPlayerDeck from "@/lib/helpers/funcs/clean-decks/clean-player-deck";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<RoyaleApiResonse | RoyaleApiErrorResponse>
-) {
-  const playerTag = req.query.playerTag;
+export async function fetchAndCleanBattles(
+  playerTag: string | string[] | undefined
+): Promise<CleanedData[]> {
   const URL = `https://proxy.royaleapi.dev/v1/players/%23${playerTag}/battlelog`;
   const headers = {
     Accept: "application/json",
     Authorization: `Bearer ${process.env.ROYALE_API_KEY}`,
   };
+
   try {
     const response = await axios.get<Battles>(URL, { headers });
     const friendlyBattles = response.data.filter(
       (item) => item.type === "clanMate" || item.type === "friendly"
     );
 
-    if (friendlyBattles.length === 0)
-      res.status(404).json({
-        foundBattles: false,
-        data: "Oops. Looks like you havent had any friendly battles recently. Why dont you have some and come back!",
-      });
+    if (friendlyBattles.length === 0) {
+      throw new Error("No friendly battles found.");
+    }
 
     const cleanedFriendlyBattles: CleanedData[] = friendlyBattles.map(
       (battle) => {
@@ -70,10 +67,8 @@ export default async function handler(
         };
       }
     );
-
-    res.status(200).json({ foundBattles: true, data: cleanedFriendlyBattles });
+    return cleanedFriendlyBattles;
   } catch (error) {
-    console.log({ message: error });
-    res.status(500);
+    throw error;
   }
 }
