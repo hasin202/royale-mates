@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { fetchAndCleanBattles } from "./royale-api";
+import { fetchAndCleanBattles } from "./fetch-and-clean-battles";
 import { getRecentDbRows } from "./get-recent-db-rows";
 import { insertDbRows } from "./insert-db-rows";
 

@@ -1,11 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import {
-  Battles,
-  CleanedData,
-  RoyaleApiResonse,
-  RoyaleApiErrorResponse,
-} from "@/lib/types/types";
+import { Battles, CleanedData } from "@/lib/types/types";
 import cleanPlayerDeck from "@/lib/helpers/funcs/clean-decks/clean-player-deck";
 
 export async function fetchAndCleanBattles(
