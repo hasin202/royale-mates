@@ -10,15 +10,14 @@ export default async function handler(
   const playerTag = req.query?.playerTag;
 
   try {
-    // console.log("enter update-db");
+    console.log("enter update-db");
     const friendlyBattles = await fetchAndCleanBattles(playerTag);
-    // console.log("success hit royale endpoint");
+    console.log("success hit royale endpoint");
 
     const battles = await getRecentDbRows(playerTag);
-    // console.log("success get db values");
-    console.log(battles);
+    console.log("success get db values");
     if (battles.length === 0) {
-      console.log("egege");
+      console.log("battles length = 0");
       insertDbRows(friendlyBattles);
       return res
         .status(200)
