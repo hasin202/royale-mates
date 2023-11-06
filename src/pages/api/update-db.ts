@@ -18,12 +18,13 @@ export default async function handler(
     // console.log("success get db values");
     console.log(battles);
     if (battles.length === 0) {
+      console.log("egege");
       insertDbRows(friendlyBattles);
-      res
+      return res
         .status(200)
         .json({ message: `inserted ${friendlyBattles.length} rows` });
     }
-    res.status(200).json({ in: "update-db", data: battles });
+    return res.status(200).json({ in: "update-db", data: battles });
   } catch (error) {
     res.status(500).json({ message: "Oops an error occured" });
   }
