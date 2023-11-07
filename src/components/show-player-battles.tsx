@@ -34,12 +34,12 @@ const ShowPlayerBattles: React.FC = () => {
                 <div key={y} className="flex flex-col items-center">
                   <p>{battle.playerCrowns + " - " + battle.opponentCrowns}</p>
                   <div className="flex items-center">
-                    {battle.playerDeck.map((card) => {
-                      return <img className="w-12" src={card} />;
+                    {battle.playerDeck.map((card, j) => {
+                      return <img key={j} className="w-12" src={card} />;
                     })}
                     <p> VS </p>
-                    {battle.opponentDeck.map((card) => {
-                      return <img className="w-12" src={card} />;
+                    {battle.opponentDeck.map((card, z) => {
+                      return <img key={z} className="w-12" src={card} />;
                     })}
                   </div>
                 </div>
