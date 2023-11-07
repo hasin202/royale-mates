@@ -1,6 +1,6 @@
 import { handleError } from "@/lib/helpers/handle-error/handle-error";
 import prisma from "@/lib/prisma-client";
-import { CleanedData } from "@/lib/types/types";
+import { CleanedData } from "@/lib/types/royale-api-types";
 
 export async function insertDbRows(friendlyBattles: CleanedData[]) {
   console.log("insert db rows func");
