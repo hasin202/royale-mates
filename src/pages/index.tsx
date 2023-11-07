@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ApiError } from "next/dist/server/api-utils";
+import SearchBar from "@/components/search-bar";
+import { DbRow } from "@/lib/types/db-types";
 
 const IndexPage = () => {
-  const [battles, setBattles] = useState([]);
+  const [battles, setBattles] = useState<DbRow[]>();
   const [error, setError] = useState(""); // State to store the error message
 
   const fetchData = async () => {
@@ -29,7 +30,12 @@ const IndexPage = () => {
       {/* Render error message if it exists */}
       {error && <p className="error-message">{error}</p>}
       {/* Render battles if no error */}
-      {!error && <p>{JSON.stringify(battles)}</p>}
+      {!error && (
+        <>
+          <SearchBar setBattles={setBattles} setError={setError} />
+          <p>{JSON.stringify(battles)}</p>
+        </>
+      )}
     </div>
   );
 };
