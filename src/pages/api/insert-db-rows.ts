@@ -8,7 +8,6 @@ export async function insertDbRows(friendlyBattles: CleanedData[]) {
     const result = await prisma.battles.createMany({
       data: friendlyBattles,
     });
-    console.log("inserted data to db");
     return result;
   } catch (error) {
     throw handleError(
