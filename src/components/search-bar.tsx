@@ -2,13 +2,19 @@ import axios from "axios";
 import { DbRow } from "@/lib/types/db-types";
 import { Dispatch, useState, FormEvent, ChangeEvent } from "react";
 import { handleError } from "@/lib/helpers/handle-error/handle-error";
+import { APIError } from "@/lib/types/types";
 
 type Props = {
   setBattles: Dispatch<DbRow[]>;
-  setError: Dispatch<string>;
+  setError: Dispatch<APIError | string>;
+  setPlayerData: Dispatch<any>;
 };
 
-const SearchBar: React.FC<Props> = ({ setBattles, setError }) => {
+const SearchBar: React.FC<Props> = ({
+  setBattles,
+  setError,
+  setPlayerData,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,16 +23,20 @@ const SearchBar: React.FC<Props> = ({ setBattles, setError }) => {
 
   const fetchData = async (playerTag: string) => {
     try {
+      const playerData = await axios.get(
+        `/api/get-user-data?playerTag=${playerTag}`
+      );
+      setPlayerData(playerData.data);
       const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
-      setBattles(response.data.body.battles);
-      setError(""); // Clear any existing errors
+      setBattles(response.data.body);
+      setError("");
     } catch (error) {
       // If error.response exists and has a data property, use it, otherwise use a default message
       if (axios.isAxiosError(error)) {
         console.log(error);
-        setError(error.response?.data.error.extraInfo);
+        setError(error.response?.data.error);
       } else {
-        handleError(error, "something went wrong when getting battles");
+        setError({ message: "something went wrong" });
       }
     }
   };
@@ -36,7 +46,7 @@ const SearchBar: React.FC<Props> = ({ setBattles, setError }) => {
     // Implement the search logic here using searchTerm
     try {
       await fetchData(searchTerm);
-    } catch {
+    } catch (error) {
       setError("Oops we couldnt find that user");
     }
   };
