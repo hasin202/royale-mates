@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import SearchBar from "@/components/search-bar";
 import { DbRow } from "@/lib/types/db-types";
 import { APIError } from "@/lib/types/types";
+import { useGlobalState } from "@/lib/contexts/global-context";
 
 const IndexPage = () => {
-  const [battles, setBattles] = useState<DbRow[]>();
-  const [error, setError] = useState<APIError | string>(); // State to store the error message
-  const [playerData, setPlayerData] = useState();
+  const { battles, playerData, error } = useGlobalState();
 
   // const fetchData = async () => {
   //   try {
@@ -28,11 +27,7 @@ const IndexPage = () => {
       {/* <button onClick={fetchData} className="bg-white text-black">
         UPDATE
       </button> */}
-      <SearchBar
-        setBattles={setBattles}
-        setError={setError}
-        setPlayerData={setPlayerData}
-      />
+      <SearchBar />
       {/* Render error message if it exists */}
       {error && <p className="error-message">{JSON.stringify(error)}</p>}
       {/* Render battles if no error */}
