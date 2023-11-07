@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "@/components/search-bar";
-import { DbRow } from "@/lib/types/db-types";
-import { APIError } from "@/lib/types/types";
 import { useGlobalState } from "@/lib/contexts/global-context";
+import NavBar from "@/components/navbar";
 
 const IndexPage = () => {
   const { battles, playerData, error } = useGlobalState();
@@ -22,19 +21,20 @@ const IndexPage = () => {
   // };
 
   return (
-    <div>
+    <div className="w-full">
+      <NavBar />
       <h1>Index Page</h1>
       {/* <button onClick={fetchData} className="bg-white text-black">
         UPDATE
       </button> */}
-      <SearchBar />
+
       {/* Render error message if it exists */}
       {error && <p className="error-message">{JSON.stringify(error)}</p>}
       {/* Render battles if no error */}
       {!error && (
         <>
-          <p>{JSON.stringify(playerData)}</p>
-          <p>{JSON.stringify(battles)}</p>
+          <p className="break-all">{JSON.stringify(playerData)}</p>
+          <p className="break-all">{JSON.stringify(battles)}</p>
         </>
       )}
     </div>
