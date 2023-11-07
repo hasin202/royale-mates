@@ -1,8 +1,5 @@
 import axios from "axios";
-import { DbRow } from "@/lib/types/db-types";
-import { Dispatch, useState, FormEvent, ChangeEvent } from "react";
-import { APIError } from "@/lib/types/types";
-import { CleanedData } from "@/lib/types/royale-api-types";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { useGlobalState } from "@/lib/contexts/global-context";
 
 const SearchBar: React.FC = ({}) => {
@@ -45,12 +42,21 @@ const SearchBar: React.FC = ({}) => {
 
   return (
     <>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className="flex items-center">
+        <div className="bg-gray-100 rounded-tl rounded-bl p-1 text-black">
+          #
+        </div>
         <input
           type="text"
-          onChange={handleChange} // This line is necessary to update searchTerm
+          onChange={handleChange}
+          className="focus:outline-none text-black p-1"
         />
-        <button type="submit">Search</button>
+        <button type="submit">
+          <img
+            src={"/search.svg"}
+            className="bg-gray-100 rounded-tr rounded-br p-1"
+          />
+        </button>
       </form>
     </>
   );
