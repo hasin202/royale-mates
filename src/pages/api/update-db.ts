@@ -18,13 +18,18 @@ export default async function handler(
 
     // if theres no data in the db then add all friendly battles found
     if (recentBattles.length === 0) {
+      const responseBody: UpdateDbResponse = {
+        success: true,
+        battles: allBattles,
+      };
+
+      // Conditionally add the rowsAdded property
+      if (friendlyBattles.length > 0) {
+        responseBody.rowsAdded = `inserted ${friendlyBattles.length} rows`;
+      }
       await insertDbRows(friendlyBattles);
       return res.status(200).json({
-        body: {
-          success: true,
-          rowsAdded: `inserted ${friendlyBattles.length} rows`,
-          battles: allBattles,
-        },
+        body: responseBody,
       });
     }
 
@@ -55,7 +60,6 @@ export default async function handler(
     return res.status(200).json({
       body: {
         success: false,
-        rowsAdded: "no rows added",
         battles: allBattles,
       },
     });
