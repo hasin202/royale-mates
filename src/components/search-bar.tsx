@@ -1,21 +1,13 @@
 import axios from "axios";
 import { DbRow } from "@/lib/types/db-types";
 import { Dispatch, useState, FormEvent, ChangeEvent } from "react";
-import { handleError } from "@/lib/helpers/handle-error/handle-error";
 import { APIError } from "@/lib/types/types";
+import { CleanedData } from "@/lib/types/royale-api-types";
+import { useGlobalState } from "@/lib/contexts/global-context";
 
-type Props = {
-  setBattles: Dispatch<DbRow[]>;
-  setError: Dispatch<APIError | string>;
-  setPlayerData: Dispatch<any>;
-};
-
-const SearchBar: React.FC<Props> = ({
-  setBattles,
-  setError,
-  setPlayerData,
-}) => {
+const SearchBar: React.FC = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const { setPlayerData, setBattles, setError } = useGlobalState();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
