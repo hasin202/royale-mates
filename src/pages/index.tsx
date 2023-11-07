@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { ApiError } from "next/dist/server/api-utils";
 
 const IndexPage = () => {
   const [battles, setBattles] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("/api/update-db?playerTag=CL9RULVRV");
-  //       setBattles(response.data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch battles", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const [error, setError] = useState(""); // State to store the error message
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/update-db?playerTag=CL9RULVRV");
+      const response = await axios.get("/api/update-db?playerTag=R90PRV0PY");
       setBattles(response.data);
+      setError(""); // Clear any existing errors
     } catch (error) {
-      console.error("Failed to fetch battles", error);
+      // If error.response exists and has a data property, use it, otherwise use a default message
+      if (axios.isAxiosError(error)) {
+        console.log(error);
+        setError(error.response?.data.error.extraInfo);
+      }
     }
   };
 
@@ -31,7 +26,10 @@ const IndexPage = () => {
       <button onClick={fetchData} className="bg-white text-black">
         UPDATE
       </button>
-      <p>{JSON.stringify(battles)}</p>
+      {/* Render error message if it exists */}
+      {error && <p className="error-message">{error}</p>}
+      {/* Render battles if no error */}
+      {!error && <p>{JSON.stringify(battles)}</p>}
     </div>
   );
 };

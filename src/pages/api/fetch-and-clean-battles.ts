@@ -1,7 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { CustomError } from "@/lib/types/types";
 import axios from "axios";
 import { Battles, CleanedData } from "@/lib/types/types";
-import cleanPlayerDeck from "@/lib/helpers/funcs/clean-decks/clean-player-deck";
+import cleanPlayerDeck from "@/lib/helpers/clean-decks/clean-player-deck";
+import { handleError } from "@/lib/helpers/handle-error/handle-error";
 
 export async function fetchAndCleanBattles(
   playerTag: string | string[] | undefined
@@ -19,7 +20,7 @@ export async function fetchAndCleanBattles(
     );
 
     if (friendlyBattles.length === 0) {
-      throw new Error("No friendly battles found.");
+      throw new CustomError("No friendly battles found.", 404);
     }
 
     const cleanedFriendlyBattles: CleanedData[] = friendlyBattles.map(
@@ -38,7 +39,7 @@ export async function fetchAndCleanBattles(
           crowns: opponentCrowns,
           cards: opponentCards,
         } = opponent[0];
-        const { name: clanName } = clan;
+        const clanName = clan?.name || "No Clan";
         let win = 0;
 
         const playerDeck: string[] = cleanPlayerDeck(playerCards);
@@ -64,6 +65,9 @@ export async function fetchAndCleanBattles(
     );
     return cleanedFriendlyBattles;
   } catch (error) {
-    throw error;
+    throw handleError(
+      error,
+      "something went wrong when fetching and cleaning battles"
+    );
   }
 }

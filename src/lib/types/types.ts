@@ -74,11 +74,43 @@ export type CleanedData = {
   win: number;
 };
 
-export type RoyaleApiResonse = {
-  foundBattles: boolean;
-  data: CleanedData[] | string;
+export type APIError = {
+  message: string;
+  extraInfo?: string;
 };
 
-export type RoyaleApiErrorResponse = {
-  message: string;
+export type APIResponse<T> = {
+  body?: T;
+  error?: APIError;
 };
+
+export type DbRow = {
+  id: number;
+  battleTime: string;
+  playerName: string;
+  playerTag: string;
+  playerDeck: string[];
+  playerCrowns: number;
+  opponentName: string;
+  opponentTag: string;
+  opponentDeck: string[];
+  opponentCrowns: number;
+  clanName: string;
+  win: number;
+};
+
+export type UpdateDbResponse = {
+  success: boolean;
+  rowsAdded?: string;
+  battles?: DbRow[]; // Assuming `DbRows` is a type you've defined elsewhere that represents the structure of the battles rows in your database.
+};
+
+export class CustomError extends Error {
+  constructor(
+    public message: string,
+    public statusCode: number,
+    public extraInfo?: string
+  ) {
+    super(message);
+  }
+}
