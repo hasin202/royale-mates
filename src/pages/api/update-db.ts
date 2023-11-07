@@ -23,6 +23,7 @@ export default async function handler(
         body: {
           success: true,
           rowsAdded: `inserted ${friendlyBattles.length} rows`,
+          battles: allBattles,
         },
       });
     }
@@ -45,6 +46,7 @@ export default async function handler(
         body: {
           success: true,
           rowsAdded: `inserted ${friendlyBattles.length} rows`,
+          battles: allBattles,
         },
       });
     }
