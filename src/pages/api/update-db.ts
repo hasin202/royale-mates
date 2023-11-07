@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { fetchAndCleanBattles } from "./fetch-and-clean-battles";
 import { getRecentDbRows } from "./get-recent-db-rows";
 import { insertDbRows } from "./insert-db-rows";
-import { APIResponse, CustomError, UpdateDbResponse } from "@/lib/types/types";
+import { UpdateDbResponse } from "@/lib/types/db-types";
+import { APIResponse } from "@/lib/types/types";
 import { APIErrorHandler } from "@/lib/helpers/handle-error/handle-error";
 
 export default async function handler(

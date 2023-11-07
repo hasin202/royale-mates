@@ -1,6 +1,6 @@
 import { handleError } from "@/lib/helpers/handle-error/handle-error";
 import prisma from "@/lib/prisma-client";
-import { DbRow } from "@/lib/types/types";
+import { DbRow } from "@/lib/types/db-types";
 
 export async function getRecentDbRows(
   playerTag: string | string[] | undefined
