@@ -15,7 +15,7 @@ const SearchBar: React.FC = ({}) => {
       const playerData = await axios.get(
         `/api/get-user-data?playerTag=${playerTag}`
       );
-      setPlayerData(playerData.data);
+      setPlayerData(playerData.data.body);
       const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
       setBattles(response.data.body);
       setError("");
