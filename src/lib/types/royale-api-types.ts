@@ -128,3 +128,10 @@ export type CleanedData = {
   // win = 0 means draw
   win: number;
 };
+
+export type CleanedUserData = {
+  name: string;
+  tag: string;
+  expLevel: number;
+  trophies: number;
+};
