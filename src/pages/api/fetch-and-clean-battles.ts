@@ -1,6 +1,6 @@
 import { CustomError } from "@/lib/types/types";
 import axios from "axios";
-import { Battles, CleanedData } from "@/lib/types/types";
+import { Battles, CleanedData } from "@/lib/types/royale-api-types";
 import cleanPlayerDeck from "@/lib/helpers/clean-decks/clean-player-deck";
 import { handleError } from "@/lib/helpers/handle-error/handle-error";
 
