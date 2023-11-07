@@ -20,7 +20,7 @@ export async function fetchAndCleanBattles(
     );
 
     if (friendlyBattles.length === 0) {
-      throw new CustomError("No friendly battles found.", 404);
+      return [];
     }
 
     const cleanedFriendlyBattles: CleanedData[] = friendlyBattles.map(
