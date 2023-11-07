@@ -1,7 +1,8 @@
 import React from "react";
-import SearchBar from "@/components/search-bar";
-import { useGlobalState } from "@/lib/contexts/global-context";
 import NavBar from "@/components/navbar";
+import ShowData from "@/components/show-data";
+import { useGlobalState } from "@/lib/contexts/global-context";
+import { horizontalPagePadding } from "@/lib/styles";
 
 const IndexPage = () => {
   const { battles, playerData, error } = useGlobalState();
@@ -23,20 +24,15 @@ const IndexPage = () => {
   return (
     <div className="w-full">
       <NavBar />
-      <h1>Index Page</h1>
-      {/* <button onClick={fetchData} className="bg-white text-black">
+      <div className={`${horizontalPagePadding} py-8`}>
+        {/* <button onClick={fetchData} className="bg-white text-black">
         UPDATE
       </button> */}
-
-      {/* Render error message if it exists */}
-      {error && <p className="error-message">{JSON.stringify(error)}</p>}
-      {/* Render battles if no error */}
-      {!error && (
-        <>
-          <p className="break-all">{JSON.stringify(playerData)}</p>
-          <p className="break-all">{JSON.stringify(battles)}</p>
-        </>
-      )}
+        {/* Render error message if it exists */}
+        {error && <p className="error-message">{JSON.stringify(error)}</p>}
+        {/* Render battles if no error */}
+        <ShowData />
+      </div>
     </div>
   );
 };
