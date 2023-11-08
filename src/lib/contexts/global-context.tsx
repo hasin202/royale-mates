@@ -1,6 +1,6 @@
 // contexts/GlobalStateContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import { DbRow } from "../types/db-types";
+import { UpdateDbResponse } from "../types/db-types";
 import { APIError } from "../types/types";
 import { CleanedUserData } from "../types/royale-api-types";
 // Define the shape of your context state
@@ -9,8 +9,8 @@ interface GlobalStateContextProps {
 }
 
 interface GlobalState {
-  battles: DbRow[] | undefined;
-  setBattles: (value: DbRow[]) => void;
+  battles: UpdateDbResponse | undefined;
+  setBattles: (value: UpdateDbResponse) => void;
   error: APIError | string | undefined;
   setError: (value: APIError | string | undefined) => void;
   playerData: CleanedUserData | undefined;
@@ -26,7 +26,7 @@ export const GlobalStateContext = createContext<GlobalState | undefined>(
 export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
   children,
 }) => {
-  const [battles, setBattles] = useState<DbRow[] | undefined>();
+  const [battles, setBattles] = useState<UpdateDbResponse | undefined>();
   const [error, setError] = useState<APIError | string | undefined>(); // State to store the error message
   const [playerData, setPlayerData] = useState<CleanedUserData | undefined>();
 
