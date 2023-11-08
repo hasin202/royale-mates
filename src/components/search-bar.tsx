@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, FormEvent, ChangeEvent } from "react";
 import { useGlobalState } from "@/lib/contexts/global-context";
+import { cleanUserTag } from "@/lib/helpers/clean-user-tag/clean-user-tag";
 
 const SearchBar: React.FC = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,13 +13,13 @@ const SearchBar: React.FC = ({}) => {
 
   const fetchData = async (playerTag: string) => {
     try {
-      const playerData = await axios.get(
-        `/api/get-user-data?playerTag=${playerTag}`
-      );
+      let tag = cleanUserTag(playerTag);
+      const playerData = await axios.get(`/api/get-user-data?playerTag=${tag}`);
       setPlayerData(playerData.data.body);
-      const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
+      const response = await axios.get(`/api/update-db?playerTag=${tag}`);
       setBattles(response.data.body);
       setError("");
+      tag = "";
     } catch (error) {
       // If error.response exists and has a data property, use it, otherwise use a default message
       if (axios.isAxiosError(error)) {
