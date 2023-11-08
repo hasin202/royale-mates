@@ -2,6 +2,7 @@ import { useGlobalState } from "@/lib/contexts/global-context";
 import formBattlesSummaries from "@/lib/helpers/form-battles-summaries/form-battle-summaries";
 import { BattleSummaries } from "@/lib/types/battle-summaries-types";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const ShowPlayerBattles: React.FC = () => {
   const { battles } = useGlobalState();
@@ -35,11 +36,28 @@ const ShowPlayerBattles: React.FC = () => {
                   <p>{battle.playerCrowns + " - " + battle.opponentCrowns}</p>
                   <div className="flex items-center">
                     {battle.playerDeck.map((card, j) => {
-                      return <img key={j} className="w-12" src={card} />;
+                      return (
+                        <Image
+                          alt="player card"
+                          key={j}
+                          width={48}
+                          height={57}
+                          src={card}
+                        />
+                      );
                     })}
                     <p> VS </p>
                     {battle.opponentDeck.map((card, z) => {
-                      return <img key={z} className="w-12" src={card} />;
+                      return (
+                        <Image
+                          alt="opponent card"
+                          key={z}
+                          width={48}
+                          height={57}
+                          src={card}
+                          loading="lazy"
+                        />
+                      );
                     })}
                   </div>
                 </div>

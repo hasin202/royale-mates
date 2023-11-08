@@ -1,4 +1,5 @@
 import { useGlobalState } from "@/lib/contexts/global-context";
+import Image from "next/image";
 
 const ShowPlayerData: React.FC = () => {
   const { playerData } = useGlobalState();
@@ -13,7 +14,7 @@ const ShowPlayerData: React.FC = () => {
       <div className="flex justify-between items-bottom">
         <p className="text-gray-600">{playerData?.tag}</p>
         <div className="flex items-center gap-2">
-          <img src={"/trophy.svg"} />
+          <Image src={"/trophy.svg"} alt="trophies" width={24} height={24} />
           <p className="text-gray-600">{playerData?.trophies}</p>
         </div>
       </div>
