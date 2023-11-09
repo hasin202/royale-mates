@@ -16,20 +16,19 @@ export default async function handler(
     let friendlyBattles = await fetchAndCleanBattles(playerTag);
     const { recentBattles, allBattles } = await getRecentDbRows(playerTag);
 
-    // if theres no data in the db then add all friendly battles found
-    if (recentBattles.length === 0) {
-      const responseBody: UpdateDbResponse = {
-        success: true,
-        battles: allBattles,
-      };
+    // if theres no data in the table or friendly battles found then send a response saying no rows were added. handle success false on the front end
+    if (recentBattles.length === 0 && friendlyBattles.length === 0)
+      return res.status(200).json({ body: { success: false } });
 
-      // Conditionally add the rowsAdded property
-      if (friendlyBattles.length > 0) {
-        responseBody.rowsAdded = `inserted ${friendlyBattles.length} rows`;
-      }
+    // if theres no data in the db then add all friendly battles found
+    if (recentBattles.length === 0 && friendlyBattles.length > 0) {
       await insertDbRows(friendlyBattles);
       return res.status(200).json({
-        body: responseBody,
+        body: {
+          success: true,
+          rowsAdded: `inserted ${friendlyBattles.length} rows`,
+          battles: allBattles,
+        },
       });
     }
 
@@ -45,6 +44,8 @@ export default async function handler(
         0,
         indexOfBattleTimeInFriendlyBattles
       );
+    }
+    if (friendlyBattles.length > 0) {
       // add all new friendly battles found to the db
       await insertDbRows(friendlyBattles);
       return res.status(200).json({

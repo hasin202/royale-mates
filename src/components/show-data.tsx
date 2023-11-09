@@ -10,7 +10,7 @@ const ShowData: React.FC = () => {
     <>
       {!playerData && <p>Get started and search a user</p>}
       {playerData && <ShowPlayerData />}
-      {battles && <ShowPlayerBattles />}
+      {battles?.battles && <ShowPlayerBattles />}
     </>
   );
 };
