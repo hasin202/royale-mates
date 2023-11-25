@@ -11,19 +11,17 @@ datasource db {
     url      = env("DATABASE_URL") // uses connection pooling
 }
 
-
-
-model battles {
-  id            Int       @id @default(autoincrement())
-  battleTime    String
-  playerName    String  
-  playerTag     String
-  playerDeck    String[]
-  playerCrowns  Int
-  opponentName  String
-  opponentTag   String
-  opponentDeck  String[]
-  opponentCrowns Int
-  clanName      String
-  win           Int
+model UsersBattles {
+    id             Int      @id @default(autoincrement())
+    battleTime     String
+    playerName     String
+    playerTag      String
+    playerDeck     String[]
+    playerCrowns   Int
+    opponentName   String
+    opponentTag    String
+    opponentDeck   String[]
+    opponentCrowns Int
+    clanName       String
+    win            Int
 }

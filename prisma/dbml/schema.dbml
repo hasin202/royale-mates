@@ -2,7 +2,7 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
-Table battles {
+Table UsersBattles {
   id Int [pk, increment]
   battleTime String [not null]
   playerName String [not null]
