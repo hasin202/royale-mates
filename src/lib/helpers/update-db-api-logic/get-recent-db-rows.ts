@@ -4,7 +4,7 @@ import { DbRow } from "@/lib/types/db-types";
 
 export async function getRecentDbRows(
   playerTag: string | string[] | undefined
-): Promise<{ recentBattles: DbRow[]; allBattles: DbRow[] }> {
+): Promise<DbRow[]> {
   try {
     console.log("Before querying the database"); // Log before the query
 
@@ -12,15 +12,13 @@ export async function getRecentDbRows(
       where: {
         playerTag: `#${playerTag}`,
       },
-      take: 31,
       orderBy: {
         battleTime: "desc",
       },
     });
 
-    if (battles.length === 0) return { recentBattles: [], allBattles: [] };
-    const recentBattles = battles.slice(0, 31);
-    return { recentBattles: recentBattles, allBattles: battles };
+    if (battles.length === 0) return [];
+    return battles;
   } catch (error) {
     throw handleError(error, "something went wrong when getting database rows");
   }

@@ -1,3 +1,5 @@
+import { CleanedData } from "./royale-api-types";
+
 export type DbRow = {
   id: number;
   battleTime: string;
@@ -14,7 +16,6 @@ export type DbRow = {
 };
 
 export type UpdateDbResponse = {
-  success: boolean;
-  rowsAdded?: string;
-  battles?: DbRow[];
+  rowsAdded?: number;
+  battles?: DbRow[] | CleanedData[];
 };
