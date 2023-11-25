@@ -12,7 +12,6 @@ const ShowPlayerBattles: React.FC = () => {
       const allBattles = battles?.battles;
       const reshapedBattles = formBattlesSummaries(allBattles);
       setBattleSummaries(reshapedBattles);
-      console.log(reshapedBattles);
     }
   }, [battles]);
   return (
