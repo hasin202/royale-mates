@@ -4,7 +4,6 @@ import ShowPlayerBattles from "./show-player-battles";
 
 const ShowData: React.FC = () => {
   const { playerData, battles } = useGlobalState();
-  console.log(playerData);
 
   return (
     <>
