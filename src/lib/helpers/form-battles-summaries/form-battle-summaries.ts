@@ -1,7 +1,10 @@
 import { BattleSummaries } from "@/lib/types/battle-summaries-types";
 import { DbRow } from "@/lib/types/db-types";
+import { CleanedData } from "@/lib/types/royale-api-types";
 
-const formBattlesSummaries = (battles: DbRow[]): BattleSummaries => {
+const formBattlesSummaries = (
+  battles: DbRow[] | CleanedData[]
+): BattleSummaries => {
   const resultMap = new Map();
 
   battles.forEach((battle) => {
