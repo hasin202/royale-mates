@@ -5,7 +5,7 @@ import { CleanedData } from "@/lib/types/royale-api-types";
 export async function insertDbRows(friendlyBattles: CleanedData[]) {
   console.log("insert db rows func");
   try {
-    const result = await prisma.battles.createMany({
+    const result = await prisma.usersBattles.createMany({
       data: friendlyBattles,
     });
     return result;
