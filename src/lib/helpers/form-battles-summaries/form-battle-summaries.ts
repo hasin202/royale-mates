@@ -1,9 +1,9 @@
 import { BattleSummaries } from "@/lib/types/battle-summaries-types";
-import { DbRow } from "@/lib/types/db-types";
+import { UsersBattles } from "@prisma/client";
 import { CleanedData } from "@/lib/types/royale-api-types";
 
 const formBattlesSummaries = (
-  battles: DbRow[] | CleanedData[]
+  battles: UsersBattles[] | CleanedData[]
 ): BattleSummaries => {
   const resultMap = new Map();
 
