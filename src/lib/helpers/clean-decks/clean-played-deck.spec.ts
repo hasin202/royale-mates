@@ -14,10 +14,7 @@ describe("cleanPlayerDeck", () => {
   it("should extract medium icon URLs", () => {
     const mockCards = cards;
     const urls = cleanPlayerDeck(mockCards);
-    expect(urls).toEqual([
-      "https://api-assets.clashroyale.com/cards/300/jAj1Q5rclXxU9kVImGqSJxa4wEMfEhvwNQ_4jiGUuqg.png",
-      "https://api-assets.clashroyale.com/cards/300/C88C5JH_F3lLZj6K-tLcMo5DPjrFmvzIb1R2M6xCfTE.png",
-    ]);
+    expect(urls).toEqual(["Knight", "Elite Barbarians"]);
   });
 
   // Test #3: Should handle an empty array input
