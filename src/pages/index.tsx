@@ -22,7 +22,7 @@ const IndexPage = () => {
   // };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-red-300 md:bg-blue-300 lg:bg-green-300">
       <NavBar />
       <div className={`${horizontalPagePadding} py-8`}>
         {/* <button onClick={fetchData} className="bg-white text-black">
