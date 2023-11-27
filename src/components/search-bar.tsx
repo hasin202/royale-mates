@@ -50,7 +50,7 @@ const SearchBar: React.FC = ({}) => {
         <input
           type="text"
           onChange={handleChange}
-          className="focus:outline-none text-black p-1"
+          className="focus:outline-none text-black p-1 rounded-none "
         />
         <button type="submit">
           <img

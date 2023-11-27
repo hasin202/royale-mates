@@ -11,7 +11,7 @@ const IndividualBattles: React.FC<ComponentProps> = ({ individualBattles }) => {
   return individualBattles.map((battle, i) => {
     return (
       <div className="flex flex-col w-full" key={i}>
-        <div className="flex items-center justify-center w-full">
+        <div className="flex items-center justify-center w-full md:text-lg">
           <Image
             alt="player deck"
             loading="lazy"

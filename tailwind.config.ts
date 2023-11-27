@@ -14,7 +14,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       gridTemplateColumns: {
-        "sm-cards-grid-cols": "repeat(4, 40px)",
+        "sm-cards-grid-cols": "repeat(4, 29px)",
+        "md-cards-grid-cols": "repeat(4, 55px)",
+        "2xl-cards-grid-cols": "repeat(4, 65px)",
       },
     },
   },
