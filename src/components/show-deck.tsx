@@ -7,7 +7,7 @@ interface ComponentProps {
 
 const ShowDeck: React.FC<ComponentProps> = ({ deck }) => {
   return (
-    <div className="grid grid-cols-sm-cards-grid-cols grid-rows-2">
+    <div className="grid grid-cols-sm-cards-grid-cols grid-rows-2 items-center justify-center">
       {deck.map((card, u) => {
         return (
           <Image
@@ -16,7 +16,7 @@ const ShowDeck: React.FC<ComponentProps> = ({ deck }) => {
             loading="lazy"
             height={10}
             width={40}
-            src={card}
+            src={`/cards/${card}.png`}
           />
         );
       })}
