@@ -8,9 +8,9 @@ interface ComponentProps {
 }
 
 const IndividualBattles: React.FC<ComponentProps> = ({ individualBattles }) => {
-  return individualBattles.map((battle) => {
+  return individualBattles.map((battle, i) => {
     return (
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full" key={i}>
         <div className="flex items-center justify-center w-full">
           <Image
             alt="player deck"
