@@ -1,6 +1,6 @@
 import { useGlobalState } from "@/lib/contexts/global-context";
 import ShowPlayerData from "./show-player-data";
-import ShowPlayerBattles from "./show-player-battles";
+import ShowPlayerBattles from "./show-battle-data";
 
 const ShowData: React.FC = () => {
   const { playerData, battles } = useGlobalState();
