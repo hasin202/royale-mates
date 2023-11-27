@@ -1,10 +1,10 @@
-import { BattleSummaries } from "@/lib/types/battle-summaries-types";
+import { BattleSummary } from "@/lib/types/battle-summaries-types";
 import { UsersBattles } from "@prisma/client";
 import { CleanedData } from "@/lib/types/royale-api-types";
 
 const formBattlesSummaries = (
   battles: UsersBattles[] | CleanedData[]
-): BattleSummaries => {
+): BattleSummary[] => {
   const resultMap = new Map();
 
   battles.forEach((battle) => {

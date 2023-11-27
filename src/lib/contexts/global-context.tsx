@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext, ReactNode } from "react";
 import { UpdateDbResponse } from "../types/db-types";
 import { APIError } from "../types/types";
 import { CleanedUserData } from "../types/royale-api-types";
+import { BattleSummary } from "../types/battle-summaries-types";
 // Define the shape of your context state
 interface GlobalStateContextProps {
   children: ReactNode;
@@ -15,6 +16,8 @@ interface GlobalState {
   setError: (value: APIError | string | undefined) => void;
   playerData: CleanedUserData | undefined;
   setPlayerData: (value: CleanedUserData | undefined) => void;
+  battleSummaries: BattleSummary[] | undefined;
+  setBattleSummaries: (value: BattleSummary[] | undefined) => void;
 }
 
 // Create a context with a default value
@@ -29,6 +32,7 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
   const [battles, setBattles] = useState<UpdateDbResponse | undefined>();
   const [error, setError] = useState<APIError | string | undefined>(); // State to store the error message
   const [playerData, setPlayerData] = useState<CleanedUserData | undefined>();
+  const [battleSummaries, setBattleSummaries] = useState<BattleSummary[]>();
 
   const contextValue: GlobalState = {
     battles,
@@ -37,6 +41,8 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
     setError,
     playerData,
     setPlayerData,
+    battleSummaries,
+    setBattleSummaries,
   };
 
   return (
