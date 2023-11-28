@@ -20,6 +20,8 @@ interface GlobalState {
   setBattleSummaries: (value: BattleSummary[] | undefined) => void;
   playerTag: string;
   setPlayerTag: (value: string) => void;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 }
 
 // Create a context with a default value
@@ -36,6 +38,7 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
   const [playerData, setPlayerData] = useState<CleanedUserData | undefined>();
   const [battleSummaries, setBattleSummaries] = useState<BattleSummary[]>();
   const [playerTag, setPlayerTag] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const contextValue: GlobalState = {
     battles,
@@ -48,6 +51,8 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
     setBattleSummaries,
     playerTag,
     setPlayerTag,
+    loading,
+    setLoading,
   };
 
   return (

@@ -5,7 +5,7 @@ import { cleanUserTag } from "@/lib/helpers/clean-user-tag/clean-user-tag";
 
 const SearchBar: React.FC = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { setPlayerData, setBattles, setError, setPlayerTag } =
+  const { setPlayerData, setBattles, setError, setPlayerTag, setLoading } =
     useGlobalState();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -14,6 +14,7 @@ const SearchBar: React.FC = ({}) => {
 
   const fetchData = async (playerTag: string) => {
     try {
+      setLoading(true);
       let tag = cleanUserTag(playerTag);
       setPlayerTag(tag);
       const playerData = await axios.get(`/api/get-user-data?playerTag=${tag}`);
@@ -30,6 +31,8 @@ const SearchBar: React.FC = ({}) => {
       } else {
         setError({ message: "something went wrong" });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
