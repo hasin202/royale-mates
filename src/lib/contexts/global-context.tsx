@@ -12,8 +12,8 @@ interface GlobalStateContextProps {
 interface GlobalState {
   battles: UpdateDbResponse | undefined;
   setBattles: (value: UpdateDbResponse) => void;
-  error: APIError | string | undefined;
-  setError: (value: APIError | string | undefined) => void;
+  error: APIError | undefined;
+  setError: (value: APIError | undefined) => void;
   playerData: CleanedUserData | undefined;
   setPlayerData: (value: CleanedUserData | undefined) => void;
   battleSummaries: BattleSummary[] | undefined;
@@ -34,7 +34,7 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
   children,
 }) => {
   const [battles, setBattles] = useState<UpdateDbResponse | undefined>();
-  const [error, setError] = useState<APIError | string | undefined>(); // State to store the error message
+  const [error, setError] = useState<APIError | undefined>(); // State to store the error message
   const [playerData, setPlayerData] = useState<CleanedUserData | undefined>();
   const [battleSummaries, setBattleSummaries] = useState<BattleSummary[]>();
   const [playerTag, setPlayerTag] = useState<string>("");
