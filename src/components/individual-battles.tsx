@@ -21,7 +21,7 @@ const IndividualBattles: React.FC<ComponentProps> = ({ individualBattles }) => {
           />
           <p className="ml-4">{battle.playerCrowns}</p>
           <p className="mr-2 ml-2">-</p>
-          <p className="mr-4">{battle.playerCrowns}</p>
+          <p className="mr-4">{battle.opponentCrowns}</p>
           <Image
             alt="player deck"
             loading="lazy"
