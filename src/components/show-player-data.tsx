@@ -3,11 +3,12 @@ import axios from "axios";
 import Image from "next/image";
 
 const ShowPlayerData: React.FC = () => {
-  const { playerData, playerTag, setBattles, setError, battles } =
+  const { playerData, playerTag, setBattles, setError, setLoading, loading } =
     useGlobalState();
 
   const refreshData = async () => {
     try {
+      setLoading(true);
       setBattles({});
       const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
       setBattles(response.data.body);
@@ -19,6 +20,8 @@ const ShowPlayerData: React.FC = () => {
       } else {
         setError({ message: "something went wrong" });
       }
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -38,8 +41,9 @@ const ShowPlayerData: React.FC = () => {
       </div>
       <div className="w-full flex justify-center border-t pt-4 mt-4">
         <button
-          className="text-blue-400 font-bold w-full"
+          className="text-blue-600 font-bold w-full disabled:text-blue-200"
           onClick={refreshData}
+          disabled={loading}
         >
           Refresh Player Data
         </button>
