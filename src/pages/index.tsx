@@ -2,9 +2,10 @@ import React from "react";
 import NavBar from "@/components/navbar";
 import ShowData from "@/components/show-data";
 import { useGlobalState } from "@/lib/contexts/global-context";
+import Loader from "@/components/loader";
 
 const IndexPage = () => {
-  const { error } = useGlobalState();
+  const { error, loading, battles } = useGlobalState();
   return (
     <div className="w-full ">
       <NavBar />
@@ -16,6 +17,11 @@ const IndexPage = () => {
         {error && <p className="error-message">{JSON.stringify(error)}</p>}
         {/* Render battles if no error */}
         <ShowData />
+        {loading && !battles && (
+          <div className="w-full flex justify-center mt-12">
+            <Loader />
+          </div>
+        )}
       </div>
     </div>
   );
