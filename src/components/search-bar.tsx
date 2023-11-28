@@ -15,13 +15,13 @@ const SearchBar: React.FC = ({}) => {
   const fetchData = async (playerTag: string) => {
     try {
       setLoading(true);
+      setError(undefined);
       let tag = cleanUserTag(playerTag);
       setPlayerTag(tag);
       const playerData = await axios.get(`/api/get-user-data?playerTag=${tag}`);
       setPlayerData(playerData.data.body);
       const response = await axios.get(`/api/update-db?playerTag=${tag}`);
       setBattles(response.data.body);
-      setError(undefined);
       tag = "";
     } catch (error) {
       // If error.response exists and has a data property, use it, otherwise use a default message
