@@ -10,12 +10,12 @@ const apiLogic = async (playerTag: string | string[] | undefined) => {
 
     //If no api battles or database battles are found then the user should be told to first play some battles on the front end
     if (apiBattles.length === 0 && allDbBattles.length === 0) {
-      return {};
+      return { rowsAdded: "NA" };
     } else if (apiBattles.length === 0 && allDbBattles.length > 0) {
       return { battles: allDbBattles };
     } else if (apiBattles.length > 0 && allDbBattles.length === 0) {
       await insertDbRows(apiBattles);
-      return { rowsAdded: apiBattles.length, battles: apiBattles };
+      return { rowsAdded: apiBattles.length };
     }
 
     const mostRecentBattleTime = allDbBattles[0].battleTime;
