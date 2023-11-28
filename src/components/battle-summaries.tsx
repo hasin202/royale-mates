@@ -12,6 +12,7 @@ const BattleSummaries = () => {
         key={i}
         className="px-8 py-2 flex flex-col items-center border rounded w-full"
       >
+        <p className="font-bold text-xs">Overall Record</p>
         <div className="grid grid-cols-[1fr_40px_1fr] gap-4 items-center w-full">
           <div className="flex flex-col items-end justify-center">
             <p className={crownsRowStyle}>{summary.playerWins}</p>
