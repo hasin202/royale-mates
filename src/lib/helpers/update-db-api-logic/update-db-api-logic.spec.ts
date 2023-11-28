@@ -39,7 +39,7 @@ describe("api logic for updating db", () => {
     expect(result).toEqual({ battles: testData.testTwoDbMockReturn });
   });
 
-  it("should insert API battles into the database and returns them when no database battles are found", async () => {
+  it("should insert API battles into the database when no database battles are found", async () => {
     mockedFetchAndCleanBattles.mockResolvedValue(
       testData.testThreeApiMockReturn
     );
@@ -51,7 +51,6 @@ describe("api logic for updating db", () => {
 
     expect(result).toEqual({
       rowsAdded: 2,
-      battles: testData.testThreeApiMockReturn,
     });
   });
 
