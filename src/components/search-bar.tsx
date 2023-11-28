@@ -21,7 +21,7 @@ const SearchBar: React.FC = ({}) => {
       setPlayerData(playerData.data.body);
       const response = await axios.get(`/api/update-db?playerTag=${tag}`);
       setBattles(response.data.body);
-      setError("");
+      setError(undefined);
       tag = "";
     } catch (error) {
       // If error.response exists and has a data property, use it, otherwise use a default message
@@ -42,7 +42,7 @@ const SearchBar: React.FC = ({}) => {
     try {
       await fetchData(searchTerm);
     } catch (error) {
-      setError("Oops we couldnt find that user");
+      setError({ message: "Oops we couldnt find that user" });
     }
   };
 
@@ -55,7 +55,8 @@ const SearchBar: React.FC = ({}) => {
         <input
           type="text"
           onChange={handleChange}
-          className="focus:outline-none text-black p-1 rounded-none "
+          className="focus:outline-none text-black p-1 rounded-none"
+          placeholder="player tag"
         />
         <button type="submit">
           <img
