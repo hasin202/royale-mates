@@ -9,7 +9,7 @@ const ShowData: React.FC = () => {
   return (
     <>
       {battles?.rowsAdded && <RowInsertPopup />}
-      {!playerData && <p>Get started and search a user</p>}
+      {!playerData && <p className="mt-2">Get started and search a user</p>}
       {playerData && <ShowPlayerData />}
       {battles?.battles && <ShowPlayerBattles />}
     </>

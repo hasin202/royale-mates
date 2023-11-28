@@ -9,10 +9,9 @@ const ShowPlayerData: React.FC = () => {
   const refreshData = async () => {
     try {
       setLoading(true);
-      setBattles({});
       const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
       setBattles(response.data.body);
-      setError("");
+      setError(undefined);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error);

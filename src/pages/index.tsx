@@ -3,6 +3,7 @@ import NavBar from "@/components/navbar";
 import ShowData from "@/components/show-data";
 import { useGlobalState } from "@/lib/contexts/global-context";
 import Loader from "@/components/loader";
+import Error from "@/components/error";
 
 const IndexPage = () => {
   const { error, loading, battles } = useGlobalState();
@@ -14,7 +15,7 @@ const IndexPage = () => {
         UPDATE
       </button> */}
         {/* Render error message if it exists */}
-        {error && <p className="error-message">{JSON.stringify(error)}</p>}
+        {error && <Error />}
         {/* Render battles if no error */}
         <ShowData />
         {loading && !battles && (
