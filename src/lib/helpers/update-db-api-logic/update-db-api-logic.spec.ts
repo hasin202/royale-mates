@@ -27,7 +27,7 @@ describe("api logic for updating db", () => {
     mockedGetRecentDbRows.mockResolvedValue(testData.testOneDbMockReturn);
 
     const result = await apiLogic("string");
-    expect(result).toEqual({});
+    expect(result).toEqual({ rowsAdded: "NA" });
   });
 
   it("should returns database battles only when API battles are absent but database battles exist)", async () => {

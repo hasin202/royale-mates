@@ -18,6 +18,8 @@ interface GlobalState {
   setPlayerData: (value: CleanedUserData | undefined) => void;
   battleSummaries: BattleSummary[] | undefined;
   setBattleSummaries: (value: BattleSummary[] | undefined) => void;
+  playerTag: string;
+  setPlayerTag: (value: string) => void;
 }
 
 // Create a context with a default value
@@ -33,6 +35,7 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
   const [error, setError] = useState<APIError | string | undefined>(); // State to store the error message
   const [playerData, setPlayerData] = useState<CleanedUserData | undefined>();
   const [battleSummaries, setBattleSummaries] = useState<BattleSummary[]>();
+  const [playerTag, setPlayerTag] = useState<string>("");
 
   const contextValue: GlobalState = {
     battles,
@@ -43,6 +46,8 @@ export const GlobalStateProvider: React.FC<GlobalStateContextProps> = ({
     setPlayerData,
     battleSummaries,
     setBattleSummaries,
+    playerTag,
+    setPlayerTag,
   };
 
   return (
