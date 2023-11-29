@@ -1,9 +1,10 @@
 import React from "react";
 import NavBar from "@/components/navbar";
 import Home from "@/components/home";
-import { useGlobalState } from "@/lib/contexts/global-context";
 import Loader from "@/components/loader";
 import Error from "@/components/error";
+import Footer from "@/components/footer";
+import { useGlobalState } from "@/lib/contexts/global-context";
 
 const IndexPage = () => {
   const { error, loading, battles } = useGlobalState();
@@ -21,6 +22,7 @@ const IndexPage = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

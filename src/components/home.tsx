@@ -7,12 +7,12 @@ const Home: React.FC = () => {
   const { playerData, battles } = useGlobalState();
 
   return (
-    <>
+    <div className="min-h-screen">
       {battles?.rowsAdded && <RowInsertPopup />}
       {!playerData && <p className="mt-2">Get started and search a user</p>}
       {playerData && <PlayerData />}
       {battles?.battles && <PlayerBattles />}
-    </>
+    </div>
   );
 };
 
