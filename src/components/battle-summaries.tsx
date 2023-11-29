@@ -5,7 +5,11 @@ import IndividiualSummaries from "./individual-summaries";
 const BattleSummaries = () => {
   const { battleSummaries } = useGlobalState();
   return battleSummaries?.map((summary, i) => {
-    return <IndividiualSummaries key={i} summary={summary} />;
+    return (
+      <div className="w-full">
+        <IndividiualSummaries key={i} summary={summary} />
+      </div>
+    );
   });
 };
 

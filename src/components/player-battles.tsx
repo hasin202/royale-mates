@@ -3,7 +3,7 @@ import formBattlesSummaries from "@/lib/helpers/form-battles-summaries/form-batt
 import { useEffect } from "react";
 import BattleSummaries from "./battle-summaries";
 
-const ShowPlayerBattles: React.FC = () => {
+const PlayerBattles: React.FC = () => {
   const { battles, setBattleSummaries } = useGlobalState();
   useEffect(() => {
     console.log(battles);
@@ -14,11 +14,11 @@ const ShowPlayerBattles: React.FC = () => {
     }
   }, [battles]);
   return (
-    <div className="mt-4 w-full flex flex-col items-center gap-2 w-full">
-      <p className="font-black text-3xl">BATTLES</p>
+    <div className="py-4 w-full flex flex-col items-center gap-2 w-full">
+      <p className="font-black text-4xl font-supercell">BATTLES</p>
       <BattleSummaries />
     </div>
   );
 };
 
-export default ShowPlayerBattles;
+export default PlayerBattles;
