@@ -18,6 +18,12 @@ const config: Config = {
         "md-cards-grid-cols": "repeat(4, 55px)",
         "2xl-cards-grid-cols": "repeat(4, 65px)",
       },
+      fontFamily: {
+        supercell: ["supercell"],
+      },
+      fontSize: {
+        "2xs": "0.6rem",
+      },
     },
   },
   plugins: [],
