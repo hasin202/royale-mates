@@ -55,7 +55,7 @@ const SearchBar: React.FC = ({}) => {
         <input
           type="text"
           onChange={handleChange}
-          className="focus:outline-none text-black p-1 rounded-none"
+          className="focus:outline-none text-black p-1 rounded-none w-36"
           placeholder="player tag"
         />
         <button type="submit">

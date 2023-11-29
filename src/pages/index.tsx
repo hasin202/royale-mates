@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "@/components/navbar";
-import ShowData from "@/components/show-data";
+import Home from "@/components/home";
 import { useGlobalState } from "@/lib/contexts/global-context";
 import Loader from "@/components/loader";
 import Error from "@/components/error";
@@ -8,16 +8,13 @@ import Error from "@/components/error";
 const IndexPage = () => {
   const { error, loading, battles } = useGlobalState();
   return (
-    <div className="w-full ">
+    <div className="w-full flex flex-col items-center">
       <NavBar />
-      <div className={`px-4 md:px-24 lg:px-48 xl:px-96 2xl:px-[30rem] py-8`}>
-        {/* <button onClick={fetchData} className="bg-white text-black">
-        UPDATE
-      </button> */}
+      <div className={`w-80 md:w-[32rem] 2xl:w-[38rem]`}>
         {/* Render error message if it exists */}
         {error && <Error />}
         {/* Render battles if no error */}
-        <ShowData />
+        <Home />
         {loading && !battles && (
           <div className="w-full flex justify-center mt-12">
             <Loader />

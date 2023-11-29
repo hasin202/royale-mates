@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+@font-face {
+  font-family: "supercell";
+  src: local(''), url('../../public//fonts/Supercell-Magic\ Regular.ttf')
+}
