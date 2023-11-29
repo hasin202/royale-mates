@@ -28,5 +28,5 @@ body {
 
 @font-face {
   font-family: "supercell";
-  src: local(''), url('../../public//fonts/Supercell-Magic\ Regular.ttf'), format('ttf')
+  src: local(''), url('../../public//fonts/Supercell-Magic\ Regular.ttf')
 }
