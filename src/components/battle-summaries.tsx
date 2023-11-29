@@ -6,8 +6,8 @@ const BattleSummaries = () => {
   const { battleSummaries } = useGlobalState();
   return battleSummaries?.map((summary, i) => {
     return (
-      <div className="w-full">
-        <IndividiualSummaries key={i} summary={summary} />
+      <div className="w-full" key={i}>
+        <IndividiualSummaries summary={summary} />
       </div>
     );
   });
