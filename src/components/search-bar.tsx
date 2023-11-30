@@ -1,68 +1,53 @@
-import axios from "axios";
 import { useState, FormEvent, ChangeEvent } from "react";
-import { useGlobalState } from "@/lib/contexts/global-context";
 import { cleanUserTag } from "@/lib/helpers/clean-user-tag/clean-user-tag";
+import { useRouter } from "next/router";
+import { useGlobalState } from "@/lib/contexts/global-context";
 
-const SearchBar: React.FC = ({}) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setPlayerData, setBattles, setError, setPlayerTag, setLoading } =
-    useGlobalState();
+interface ComponentProps {
+  isLandingPage: boolean;
+}
+
+const SearchBar: React.FC<ComponentProps> = ({ isLandingPage }) => {
+  const router = useRouter();
+  const { playerTag } = useGlobalState();
+  const [searchTerm, setSearchTerm] = useState(playerTag || "");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  const fetchData = async (playerTag: string) => {
-    try {
-      setLoading(true);
-      setError(undefined);
-      let tag = cleanUserTag(playerTag);
-      setPlayerTag(tag);
-      const playerData = await axios.get(`/api/get-user-data?playerTag=${tag}`);
-      setPlayerData(playerData.data.body);
-      const response = await axios.get(`/api/update-db?playerTag=${tag}`);
-      setBattles(response.data.body);
-      tag = "";
-    } catch (error) {
-      // If error.response exists and has a data property, use it, otherwise use a default message
-      if (axios.isAxiosError(error)) {
-        console.log(error);
-        setError(error.response?.data.error);
-      } else {
-        setError({ message: "something went wrong" });
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Implement the search logic here using searchTerm
-    try {
-      await fetchData(searchTerm);
-    } catch (error) {
-      setError({ message: "Oops we couldnt find that user" });
-    }
+    let tag = cleanUserTag(searchTerm);
+    router.push(`/${tag}`);
   };
 
   return (
     <>
-      <form onSubmit={handleSearch} className="flex items-center">
-        <div className="bg-gray-100 rounded-tl rounded-bl p-1 text-black">
+      <form
+        onSubmit={handleSearch}
+        className={`flex items-center h-9 ${isLandingPage ? "w-full" : ""}`}
+      >
+        <div
+          className={`bg-gray-200 rounded-tl rounded-bl p-1 text-black h-full`}
+        >
           #
         </div>
         <input
           type="text"
           onChange={handleChange}
-          className="focus:outline-none text-black p-1 rounded-none w-36"
+          className={`focus:outline-none text-black p-1 rounded-none h-full ${
+            isLandingPage ? "w-full border border-gray-200" : "w-36"
+          }`}
           placeholder="player tag"
+          value={searchTerm}
         />
-        <button type="submit">
-          <img
-            src={"/search.svg"}
-            className="bg-gray-100 rounded-tr rounded-br p-1"
-          />
+        <button
+          type="submit"
+          className={`bg-gray-200 rounded-tr rounded-br p-1 h-full`}
+        >
+          <img src={"/search.svg"} alt="search button" />
         </button>
       </form>
     </>
