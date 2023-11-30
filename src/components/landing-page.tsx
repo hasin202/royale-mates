@@ -11,7 +11,15 @@ const LandingPage = () => {
         <p>
           Your digital logbook for all Clash Royale showdowns against the people
           you know best - your friends and clanmates. Get started by searching
-          your player tag!
+          your{" "}
+          <a
+            href="https://support.supercell.com/clash-royale/en/articles/what-is-player-tag.html#:~:text=At%20the%20'Battle'%20tab%2C,below%20your%20in%2Dgame%20name."
+            className="text-blue-500 underline"
+            target="_blank"
+          >
+            player tag
+          </a>
+          !
         </p>
       </div>
       <SearchBar isLandingPage={true} />
