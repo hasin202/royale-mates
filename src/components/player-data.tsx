@@ -1,28 +1,9 @@
 import { useGlobalState } from "@/lib/contexts/global-context";
-import axios from "axios";
 import Image from "next/image";
 
 const PlayerData: React.FC = () => {
-  const { playerData, playerTag, setBattles, setError, setLoading, loading } =
-    useGlobalState();
+  const { playerData } = useGlobalState();
 
-  const refreshData = async () => {
-    try {
-      setLoading(true);
-      setError(undefined);
-      const response = await axios.get(`/api/update-db?playerTag=${playerTag}`);
-      setBattles(response.data.body);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(error);
-        setError(error.response?.data.error);
-      } else {
-        setError({ message: "something went wrong" });
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
     <div className="border-2 border-stone-500 rounded-lg p-4">
       <div className="flex justify-between items-center mb-2">
@@ -37,15 +18,6 @@ const PlayerData: React.FC = () => {
           <Image src={"/trophy.svg"} alt="trophies" width={24} height={24} />
           <p className="text-gray-600">{playerData?.trophies}</p>
         </div>
-      </div>
-      <div className="w-full flex justify-center border-t pt-4 mt-4">
-        <button
-          className="text-blue-600 font-bold w-full disabled:text-blue-200"
-          onClick={refreshData}
-          disabled={loading}
-        >
-          Refresh Player Data
-        </button>
       </div>
     </div>
   );

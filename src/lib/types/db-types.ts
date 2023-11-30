@@ -2,6 +2,6 @@ import { CleanedData } from "./royale-api-types";
 import { UsersBattles } from "@prisma/client";
 
 export type UpdateDbResponse = {
-  rowsAdded?: number | string;
+  rowsAdded?: string;
   battles?: UsersBattles[] | CleanedData[];
 };

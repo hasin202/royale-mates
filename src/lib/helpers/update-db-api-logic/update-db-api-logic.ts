@@ -2,6 +2,7 @@ import { fetchAndCleanBattles } from "./fetch-and-clean-battles";
 import { getRecentDbRows } from "./get-recent-db-rows";
 import { insertDbRows } from "./insert-db-rows";
 import { handleError } from "../handle-error/handle-error";
+import { all } from "axios";
 
 const apiLogic = async (playerTag: string | string[] | undefined) => {
   try {
@@ -15,7 +16,7 @@ const apiLogic = async (playerTag: string | string[] | undefined) => {
       return { battles: allDbBattles };
     } else if (apiBattles.length > 0 && allDbBattles.length === 0) {
       await insertDbRows(apiBattles);
-      return { rowsAdded: apiBattles.length };
+      return { battles: apiBattles };
     }
 
     const mostRecentBattleTime = allDbBattles[0].battleTime;
@@ -30,7 +31,8 @@ const apiLogic = async (playerTag: string | string[] | undefined) => {
 
     if (apiBattles.length > 0) {
       await insertDbRows(apiBattles);
-      return { rowsAdded: apiBattles.length };
+      apiBattles.push(...allDbBattles);
+      return { battles: apiBattles };
     }
   } catch (error) {
     throw handleError(

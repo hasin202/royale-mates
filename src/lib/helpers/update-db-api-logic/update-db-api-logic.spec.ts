@@ -50,7 +50,7 @@ describe("api logic for updating db", () => {
     expect(insertDbRows).toHaveBeenCalledWith(testData.testThreeApiMockReturn);
 
     expect(result).toEqual({
-      rowsAdded: 2,
+      battles: testData.testThreeApiMockReturn,
     });
   });
 
@@ -64,7 +64,7 @@ describe("api logic for updating db", () => {
 
     expect(insertDbRows).toHaveBeenCalled();
     expect(result).toEqual({
-      rowsAdded: 1,
+      battles: testData.testFourExpectedReturn,
     });
   });
 
@@ -87,6 +87,8 @@ describe("api logic for updating db", () => {
     const result = await apiLogic("playerTag");
 
     expect(insertDbRows).toHaveBeenCalledWith(testData.testSixApiMockReturn);
-    expect(result).toEqual({ rowsAdded: 2 });
+    expect(result).toEqual({
+      battles: testData.testSixExpectedReturn,
+    });
   });
 });

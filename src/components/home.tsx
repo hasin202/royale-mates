@@ -1,17 +1,23 @@
+import React from "react";
+import NavBar from "@/components/navbar";
+import Data from "@/components/data";
+import Error from "@/components/error";
+import Footer from "@/components/footer";
 import { useGlobalState } from "@/lib/contexts/global-context";
-import PlayerData from "./player-data";
-import PlayerBattles from "./player-battles";
-import RowInsertPopup from "./row-insert-popup";
 
-const Home: React.FC = () => {
-  const { playerData, battles } = useGlobalState();
-
+const Home = () => {
+  const { error } = useGlobalState();
   return (
-    <div className="min-h-screen">
-      {battles?.rowsAdded && <RowInsertPopup />}
-      {!playerData && <p className="mt-2">Get started and search a user</p>}
-      {playerData && <PlayerData />}
-      {battles?.battles && <PlayerBattles />}
+    <div className="w-full flex flex-col items-center">
+      <NavBar />
+      <div className={`w-80 md:w-[32rem] 2xl:w-[38rem]`}>
+        {/* Render error message if it exists */}
+        {error && <Error />}
+        {/* Render battles if no error */}
+
+        <Data />
+      </div>
+      <Footer />
     </div>
   );
 };

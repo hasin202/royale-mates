@@ -108,6 +108,36 @@ export const testFourDbMockReturn = [
     win: 2,
   },
 ];
+
+export const testFourExpectedReturn = [
+  {
+    battleTime: "20231124T155049.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
+  {
+    id: 1,
+    battleTime: "20231124T154835.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
+];
 //---------------
 export const testFiveApiMockReturn = [
   {
@@ -199,6 +229,63 @@ export const testSixApiMockReturn = [
 ];
 
 export const testSixDbMockReturn = [
+  {
+    id: 2,
+    battleTime: "20231124T130954.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
+  {
+    id: 1,
+    battleTime: "20231124T130458.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
+];
+
+export const testSixExpectedReturn = [
+  {
+    battleTime: "20231124T155049.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
+  {
+    battleTime: "20231124T154835.000Z",
+    playerName: "",
+    playerTag: "",
+    playerDeck: [],
+    playerCrowns: 1,
+    opponentName: "",
+    opponentTag: "",
+    opponentDeck: [],
+    opponentCrowns: 1,
+    clanName: "",
+    win: 2,
+  },
   {
     id: 2,
     battleTime: "20231124T130954.000Z",
