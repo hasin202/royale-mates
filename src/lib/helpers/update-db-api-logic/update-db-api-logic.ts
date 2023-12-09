@@ -2,7 +2,6 @@ import { fetchAndCleanBattles } from "./fetch-and-clean-battles";
 import { getRecentDbRows } from "./get-recent-db-rows";
 import { insertDbRows } from "./insert-db-rows";
 import { handleError } from "../handle-error/handle-error";
-import { all } from "axios";
 
 const apiLogic = async (playerTag: string | string[] | undefined) => {
   try {
