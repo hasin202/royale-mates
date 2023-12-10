@@ -7,6 +7,7 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
+  console.log("---");
   try {
     const uniquePlayerTags = await prisma.usersBattles.findMany({
       select: {
@@ -17,7 +18,13 @@ export default async function handler(
     const cleanedPlayerTags = uniquePlayerTags.map((tag) =>
       cleanUserTag(tag.playerTag)
     );
-    cleanedPlayerTags.forEach(async (tag) => await apiLogic(tag));
+    console.log(cleanedPlayerTags);
+    // await Promise.all(
+    //   cleanedPlayerTags.map(async (tag) => await apiLogic(tag))
+    // );
+    for (const tag of cleanedPlayerTags) {
+      await apiLogic(tag);
+    }
     return response.status(200).send("completed cron");
   } catch (error) {
     return response.status(400).send(error);
