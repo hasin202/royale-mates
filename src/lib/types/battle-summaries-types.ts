@@ -4,5 +4,6 @@ export type BattleSummary = {
   opponentName: string;
   playerWins: number;
   opponentWins: number;
+  opponentTag: string;
   battles: UsersBattles[];
 };

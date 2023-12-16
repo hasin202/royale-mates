@@ -8,13 +8,14 @@ const formBattlesSummaries = (
   const resultMap = new Map();
 
   battles.forEach((battle) => {
-    const { playerName, opponentName, win } = battle;
+    const { playerName, opponentName, win, opponentTag } = battle;
     const key = `${playerName}-${opponentName}`;
 
     if (!resultMap.has(key)) {
       resultMap.set(key, {
         playerName: playerName,
         opponentName: opponentName,
+        opponentTag: opponentTag,
         playerWins: 0,
         opponentWins: 0,
         battles: [],

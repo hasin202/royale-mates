@@ -2,7 +2,7 @@ import { useGlobalState } from "@/lib/contexts/global-context";
 import IndividualBattles from "./individual-battles";
 import IndividiualSummaries from "./individual-summaries";
 
-const BattleSummaries = () => {
+const IndividualBattleCard = () => {
   const { battleSummaries } = useGlobalState();
   return battleSummaries?.map((summary, i) => {
     return (
@@ -13,4 +13,4 @@ const BattleSummaries = () => {
   });
 };
 
-export default BattleSummaries;
+export default IndividualBattleCard;

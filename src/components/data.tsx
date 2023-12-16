@@ -1,6 +1,6 @@
 import { useGlobalState } from "@/lib/contexts/global-context";
 import PlayerData from "./player-data";
-import PlayerBattles from "./player-battles";
+import PlayerBattlesList from "./player-battles";
 import RowInsertPopup from "./row-insert-popup";
 import Loader from "@/components/loader";
 
@@ -16,7 +16,7 @@ const Data: React.FC = () => {
           <Loader />
         </div>
       )}
-      {battles?.battles && <PlayerBattles />}
+      {battles?.battles && <PlayerBattlesList />}
     </div>
   );
 };
