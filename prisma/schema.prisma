@@ -1,14 +1,15 @@
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL") // uses connection pooling
+    directUrl = env("DIRECT_URL")
+}
+
 generator client {
     provider = "prisma-client-js"
 }
 
 generator dbml {
     provider = "prisma-dbml-generator"
-}
-
-datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL") // uses connection pooling
 }
 
 model UsersBattles {
